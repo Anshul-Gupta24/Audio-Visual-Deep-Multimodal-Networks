@@ -9,7 +9,7 @@ Audio Data: Get spoken data for all single word ImageNet classes (583). In this 
 ### Pre-processing
 
 Extract 80 dimensional features for all the audio files using the LRE baseline.</br>
-Generate the train, validation and test data using get_speech_features.py</br>
+Generate the train, validation and test data using get_audio_data.py</br>
 Generate the train, validation and test csv files using get_csv.py
 
 
