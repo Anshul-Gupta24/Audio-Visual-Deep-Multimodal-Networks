@@ -12,4 +12,4 @@ curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-t
       'audioEncoding':'LINEAR16',
       'sampleRateHertz': 8000
     }
-  }" "https://texttospeech.googleapis.com/v1/text:synthesize" > ./synth_eng_txt/synthesize-text_$1_$4.txt
+  }" "https://texttospeech.googleapis.com/v1/text:synthesize" > ../Data/google_synth_eng_txt/synthesize-text_$1_$4.txt
