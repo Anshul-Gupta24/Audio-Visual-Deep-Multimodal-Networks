@@ -15,5 +15,5 @@ for w in words:
 	for v in voices:
 		print(w)
 		print()	
-		os.system(("bash /home/anshulg/WordNet/get_ibm_tts.sh"+" "+w+" "+v+" _"+str(c)).encode('utf-8'))
+		os.system(("get_ibm_tts.sh"+" "+w+" "+v+" _"+str(c)).encode('utf-8'))
 		c += 1
