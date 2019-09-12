@@ -23,3 +23,5 @@ for w in words:
 		for v in voices[a]:
 			os.system(u' '.join(("bash get_google_tts.sh", w, a, v, str(c))).encode('utf-8'))
 			c += 1
+			
+os.system("bash google_text_speech.sh")
