@@ -33,6 +33,7 @@ Extract the 2048D audio and image embeddings using:</br>
 ```
 cd Preprocessing
 python get_speech_features_2048D.py
+python get_image_features_2048D.py
 ```
 
 
