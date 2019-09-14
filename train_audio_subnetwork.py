@@ -198,7 +198,7 @@ if __name__ == '__main__':
     plt.legend(['train', 'val'], loc='upper left')
     plt.ylabel('loss')
     plt.xlabel('epoch')
-    plt.savefig("Plots/model_loss_sepspk576_newdata_2048_noisy.png", bbox_inches = 'tight', pad_inches = 0)
+    plt.savefig("Plots/model_loss_audio_subnetwork.png", bbox_inches = 'tight', pad_inches = 0)
     plt.close()
 
     plt.plot(history.history['acc'])
@@ -206,5 +206,5 @@ if __name__ == '__main__':
     plt.legend(['train', 'val'], loc='upper left')
     plt.ylabel('acc')
     plt.xlabel('epoch')
-    plt.savefig("Plots/model_acc_sepspk576_2048_noisy.png", bbox_inches = 'tight', pad_inches = 0)
+    plt.savefig("Plots/model_acc_audio_subnetwork.png", bbox_inches = 'tight', pad_inches = 0)
     plt.close()
