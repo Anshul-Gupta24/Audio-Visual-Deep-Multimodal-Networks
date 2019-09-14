@@ -1,5 +1,5 @@
 # Audio-Visual-Deep-Multimodal-Networks
-
+#### Code for the paper 'Second Language Transfer Learning in Humans and Machines using Image Supervision' to be published in ASRU 2019.
 
 ### Data
 
