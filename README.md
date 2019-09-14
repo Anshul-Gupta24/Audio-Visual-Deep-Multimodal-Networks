@@ -25,6 +25,16 @@ bash preprocessing.sh
 
 ### Training
 
+To train the audio subnetwork, run:</br>
+```
+python train_audio_subnetwork.py
+```
+Extract the 2048D audio and image embeddings using:</br>
+```
+cd Preprocessing
+python get_speech_features_2048D.py
+```
+
 
 ### Testing
 
