@@ -16,7 +16,7 @@ cd Preprocessing
 ### Pre-processing
 
 We extract 80 dimensional features using the LRE baseline. The features extracted are stored in the form of a dictionary and split into train, validation and test sets. The data along with their corresponding csv files are stored in the Data directory.</br></br>
-To preprocess the data, run:</br>
+Download the LRE baseline system from () and store in the Preprocessing directory. To preprocess the data, run:</br>
 ```
 cd Preprocessing
 bash preprocessing.sh
