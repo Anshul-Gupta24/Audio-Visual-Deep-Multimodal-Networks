@@ -3,7 +3,7 @@
 
 ### Data
 
-Image Data: Download the ImageNet data (http://www.image-net.org/). For the 79 classes not present in Imagenet, download images from Google and Flickr.  </br>
+Image Data: Download the ImageNet data (http://www.image-net.org/). For the 79 classes not present in ImageNet, download images from Google and Flickr.  </br>
 Audio Data: Generate spoken data for all classes. In this paper we use the Google, IBM and Microsoft TTS systems to generate the audio data. </br>
 Helper scripts are provided in the Preprocessing directory.</br>
 ```
