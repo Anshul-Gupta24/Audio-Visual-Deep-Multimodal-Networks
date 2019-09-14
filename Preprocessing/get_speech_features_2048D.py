@@ -1,3 +1,6 @@
+'''
+Creates a dictionary of the form {<class>:feat1, feat2 ... } where feat1, feat2 ... are 2048D audio subnetwork embeddings
+'''
 import pickle
 import keras
 from keras.models import Model, load_model, Sequential
