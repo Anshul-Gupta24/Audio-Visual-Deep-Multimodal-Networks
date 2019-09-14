@@ -7,12 +7,13 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS']="<location to json file>"
 words = open('../classes.txt','r').read().split('\n')
 words = words[:-1]
 
-
+# English voices
 accents = ['en-gb', 'en-au','en-us']
 voices = {}
 voices['en-gb'] = ['en-GB-Wavenet-A','en-GB-Wavenet-B','en-GB-Wavenet-C','en-GB-Wavenet-D']
 voices['en-au'] = ['en-AU-Wavenet-A','en-AU-Wavenet-B','en-AU-Wavenet-C','en-AU-Wavenet-D']
 voices['en-us'] = ['en-US-Wavenet-A','en-US-Wavenet-B','en-US-Wavenet-C','en-US-Wavenet-D','en-US-Wavenet-E','en-US-Wavenet-F']
+# Japanese voices
 #accents = [u"ja-JP"]
 #voices = {u"ja-JP":u"ja-JP-Wavenet-A"}
 
