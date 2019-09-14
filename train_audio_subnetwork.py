@@ -1,3 +1,7 @@
+'''
+Code to train the audio subnetwork
+'''
+
 from model import WordNet
 import kiran_model
 import keras	
