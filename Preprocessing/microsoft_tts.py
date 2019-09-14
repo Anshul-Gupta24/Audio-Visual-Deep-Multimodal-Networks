@@ -1,3 +1,6 @@
+'''
+Script to generate Microsoft TTS data
+'''
 import os, requests, time
 import numpy as np
 import pandas as pd
@@ -59,6 +62,7 @@ labels = open('../classes.txt','r').read().split('\n')
 labels = labels[:-1]
 
 
+# English voices
 accents = ['en-US', 'en-IN','en-AU', 'en-CA', 'en-GB', 'en-IE']
 voices = {}
 voices['en-US'] = ['ZiraRUS', 'Jessa24KRUS', 'BenjaminRUS', 'Guy24KRUS']
@@ -68,7 +72,7 @@ voices['en-CA'] = ['Linda', 'HeatherRUS']
 voices['en-GB'] = ['Susan, Apollo', 'HazelRUS', 'George, Apollo']
 voices['en-IE'] = ['Sean']
 
-
+# Japanese voices
 # accents = ['ja-JP']
 # voices = {}
 # voices['ja-JP'] = ['Ayumi, Apollo', 'Ichiro, Apollo', 'HarukaRUS']
