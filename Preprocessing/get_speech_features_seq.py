@@ -1,3 +1,6 @@
+'''
+Creates a dictionary of the form {<class>:feat1, feat2 ... } where feat1, feat2 ... are the LRE baseline features
+'''
 import pickle
 import numpy as np
 import os
@@ -10,7 +13,7 @@ with open(PATH + 'google_synth_features.pkl', 'rb') as fp:
 with open(PATH + 'ibm_synth_features.pkl', 'rb') as fp:
         data_ibm = pickle.load(fp) 
 
-with open(PATH + 'microsoft_synth_features_shrink.pkl', 'rb') as fp:
+with open(PATH + 'microsoft_synth_features.pkl', 'rb') as fp:
         data_ms = pickle.load(fp) 
 
 
