@@ -25,7 +25,7 @@ bash preprocessing.sh
 
 ### Training
 
-To train the audio subnetwork, run:</br>
+Pretrained weights for the audio subnetwork are stored in the Saved_models directory. To train the audio subnetwork, run:</br>
 ```
 python train_audio_subnetwork.py
 ```
