@@ -64,18 +64,18 @@ def load_data(path, classes, class_enc):
 
 def get_data():
 
-    classes = open('/home/anshulg/WordNet/labels_removed2.txt','r').read().split('\n')
+    classes = open('classes.txt','r').read().split('\n')
     classes = classes[:-1]
     print(len(classes))
     class_enc = {c:i for i,c in enumerate(classes)}
 
 
     # Google
-    data, lst, label_vecs, seq_lens, max_len = load_data('../Data/google_synth_features', classes, class_enc)
+    data, lst, label_vecs, seq_lens, max_len = load_data('Data/google_synth_features', classes, class_enc)
     # IBM
-    data_ibm, lst_ibm, label_vecs_ibm, seq_lens_ibm, max_len_ibm = load_data('../Data/ibm_synth_features.pkl', classes, class_enc)
+    data_ibm, lst_ibm, label_vecs_ibm, seq_lens_ibm, max_len_ibm = load_data('Data/ibm_synth_features.pkl', classes, class_enc)
     # Microsoft
-    data_ms, lst_ms, label_vecs_ms, seq_lens_ms, max_len_ms = load_data('../Data/microsoft_synth_features.pkl', classes, class_enc)
+    data_ms, lst_ms, label_vecs_ms, seq_lens_ms, max_len_ms = load_data('Data/microsoft_synth_features.pkl', classes, class_enc)
        
     max_len = np.max([max_len, max_len_ibm, max_len_ms])
   
@@ -99,22 +99,22 @@ def get_data():
     seq_lens = np.concatenate((seq_lens, seq_lens_ibm, seq_lens_ms))
 
     
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_ibm_train.pkl', 'rb') as fp:
+    with open('Data/spk_ibm_train.pkl', 'rb') as fp:
         spk_ibm_train = pickle.load(fp)
 
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_google_train.pkl', 'rb') as fp:
+    with open('Data/spk_google_train.pkl', 'rb') as fp:
         spk_google_train = pickle.load(fp)
 
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_microsoft_train.pkl', 'rb') as fp:
+    with open('Data/spk_microsoft_train.pkl', 'rb') as fp:
         spk_ms_train = pickle.load(fp)
 
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_ibm_val.pkl', 'rb') as fp:
+    with open('Data/spk_ibm_val.pkl', 'rb') as fp:
         spk_ibm_val = pickle.load(fp)
 
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_google_val.pkl', 'rb') as fp:
+    with open('Data/spk_google_val.pkl', 'rb') as fp:
         spk_google_val = pickle.load(fp)
 
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_microsoft_val.pkl', 'rb') as fp:
+    with open('Data/spk_microsoft_val.pkl', 'rb') as fp:
         spk_ms_val = pickle.load(fp)
 
         
@@ -181,7 +181,7 @@ if __name__ == '__main__':
             yield batch_data, batch_labels
         
 
-    filepath = "/home/data1/anshulg/models/model_audio_subnetwork.h5"
+    filepath = "Saved_models/model_audio_subnetwork.h5"
     checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max', period=1)
     callbacks_list = [checkpoint]
 
