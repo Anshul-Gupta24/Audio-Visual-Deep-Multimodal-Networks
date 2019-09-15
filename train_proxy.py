@@ -146,7 +146,7 @@ if __name__ == '__main__':
     num_val_batches = ((df_val.shape[0]) / BATCH_SIZE)
     
     # Phase1: Train only on images
-    history = model.fit_generator(generator_uni(df_train, img_data_train, 0), steps_per_epoch=num_train_batches, epochs=100, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
+    history = model.fit_generator(generator_uni(df_train, img_data_train, 0), steps_per_epoch=num_train_batches, epochs=20, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
 
     folder = "Saved_models/model_proxy"
     if not os.path.isdir(folder):
