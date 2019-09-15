@@ -152,7 +152,7 @@ if __name__ == '__main__':
     # Phase1: Train only on images
     jointnet = JointNet(np.zeros((576, NUM_CLASSES)), True)
     model = jointnet.model
-    history = model.fit_generator(generator_uni(df_train_img, img_data_train, 0), steps_per_epoch=num_train_batches, epochs=100, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
+    history = model.fit_generator(generator_uni(df_train_img, img_data_train, 0), steps_per_epoch=num_train_batches, epochs=100, callbacks=callbacks_list, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
     
     # Phase2: Train only on audio
     jointnet = JointNet(np.zeros((576, NUM_CLASSES)), False)
