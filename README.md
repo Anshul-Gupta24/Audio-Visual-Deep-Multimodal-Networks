@@ -39,7 +39,7 @@ To train the English speech-image deep multimodal network, run: </br>
 ```
 python train_proxy.py 
 ```
-####Transfer Learning
+#### Transfer Learning
 To train the Japanese audio subnetwork, run:</br>
 ```
 python train_audio_subnetwork_jap.py
