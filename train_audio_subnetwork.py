@@ -75,7 +75,7 @@ def get_data():
 
 
     # Google
-    data, lst, label_vecs, seq_lens, max_len = load_data('Data/google_synth_features', classes, class_enc)
+    data, lst, label_vecs, seq_lens, max_len = load_data('Data/google_synth_features.pkl', classes, class_enc)
     # IBM
     data_ibm, lst_ibm, label_vecs_ibm, seq_lens_ibm, max_len_ibm = load_data('Data/ibm_synth_features.pkl', classes, class_enc)
     # Microsoft
