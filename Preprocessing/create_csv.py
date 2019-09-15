@@ -4,8 +4,8 @@ import pickle
 import pandas as pd
 
 
-image_train_path = 'Data/img_data_train.pkl'
-image_val_path = 'Data/img_data_val.pkl'
+image_train_path = '../Data/img_data_train.pkl'
+image_val_path = '../Data/img_data_val.pkl'
 with open(image_train_path, 'rb') as file:
     image_train_feats = pickle.load(file)
 with open(image_val_path, 'rb') as file:
@@ -13,22 +13,22 @@ with open(image_val_path, 'rb') as file:
 
 print('loaded...')
 
-with open('/home/anshulg/WordNet/get_imagenet/functions/spk_ibm_train.pkl', 'rb') as fp:
+with open('../Data/spk_ibm_train.pkl', 'rb') as fp:
     spk_ibm_train = pickle.load(fp)
 
-with open('/home/anshulg/WordNet/get_imagenet/functions/spk_google_train.pkl', 'rb') as fp:
+with open('../Data/spk_google_train.pkl', 'rb') as fp:
     spk_google_train = pickle.load(fp)
 
-with open('/home/anshulg/WordNet/get_imagenet/functions/spk_microsoft_train.pkl', 'rb') as fp:
+with open('../Data/spk_microsoft_train.pkl', 'rb') as fp:
     spk_ms_train = pickle.load(fp)
 
-with open('/home/anshulg/WordNet/get_imagenet/functions/spk_ibm_val.pkl', 'rb') as fp:
+with open('../Data/spk_ibm_val.pkl', 'rb') as fp:
     spk_ibm_val = pickle.load(fp)
 
-with open('/home/anshulg/WordNet/get_imagenet/functions/spk_google_val.pkl', 'rb') as fp:
+with open('../Data/spk_google_val.pkl', 'rb') as fp:
     spk_google_val = pickle.load(fp)
 
-with open('/home/anshulg/WordNet/get_imagenet/functions/spk_microsoft_val.pkl', 'rb') as fp:
+with open('../Data/spk_microsoft_val.pkl', 'rb') as fp:
     spk_ms_val = pickle.load(fp)
 
 
