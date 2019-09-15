@@ -30,10 +30,6 @@ if __name__ == '__main__':
     NUM_CLASSES = 655
 
 
-    jointnet = JointNet(np.zeros((576, NUM_CLASSES)))
-    model = jointnet.model
-
-
     with open('Data/speech_features_2048D.pkl', 'rb') as fp:
         speech_data = pickle.load(fp)
 
@@ -145,9 +141,6 @@ if __name__ == '__main__':
     num_train_batches = ((df_train.shape[0]) / BATCH_SIZE)
     num_val_batches = ((df_val.shape[0]) / BATCH_SIZE)
     
-    # Phase1: Train only on images
-    history = model.fit_generator(generator_uni(df_train_img, img_data_train, 0), steps_per_epoch=num_train_batches, epochs=20, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
-
     folder = "Saved_models/model_proxy"
     if not os.path.isdir(folder):
         os.system('mkdir '+folder)
@@ -155,8 +148,17 @@ if __name__ == '__main__':
     checkpoint = ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=False, save_weights_only=True, period=1)
     callbacks_list = [checkpoint]
     
+    
+    # Phase1: Train only on images
+    jointnet = JointNet(np.zeros((576, NUM_CLASSES)), True)
+    model = jointnet.model
+    history = model.fit_generator(generator_uni(df_train_img, img_data_train, 0), steps_per_epoch=num_train_batches, epochs=100, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
+    
     # Phase2: Train only on audio
-    history = model.fit_generator(generator_uni(df_train_aud, img_data_train, 1), steps_per_epoch=num_train_batches, epochs=100, callbacks=callbacks_list, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
+    jointnet = JointNet(np.zeros((576, NUM_CLASSES)), False)
+    model = jointnet.model
+    model.load_weights('Saved_models/model_proxy/saved-model-24.hdf5', by_name=True)    # Choose epoch weights to load
+    history = model.fit_generator(generator_uni(df_train_aud, img_data_train, 1), steps_per_epoch=num_train_batches, epochs=100, callbacks=callbacks_list, validation_data=generator(df_val, img_data_val), initial_epoch=100, validation_steps=num_val_batches)
 
 
     print(history.history.keys())
