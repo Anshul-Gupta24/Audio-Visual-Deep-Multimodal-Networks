@@ -58,3 +58,4 @@ python train_proxy_jap.py
 ### Testing
 
 ### References
+Praveen K.\*, Gupta A.\*, Ganapathy S., Soman A. (2019). 'Second Language Transfer Learning in Humans and Machines using Image Supervision'. Accepted at ASRU 2019.
