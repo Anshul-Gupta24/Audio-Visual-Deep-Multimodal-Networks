@@ -28,9 +28,7 @@ if __name__ == '__main__':
 
     jointnet = JointNet(np.zeros((576, NUM_CLASSES)))
     model = jointnet.model
-    aud_transform = jointnet.audio_submodel
-    img_transform = jointnet.image_submodel
-    
+
 
     with open('Data/speech_features_2048D.pkl', 'rb') as fp:
         speech_data = pickle.load(fp)
