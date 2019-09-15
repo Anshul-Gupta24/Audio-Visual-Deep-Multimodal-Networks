@@ -2,7 +2,7 @@
 Code to train the audio subnetwork
 '''
 
-from model import WordNet
+from model_audio_subnetwork import WordNet
 import kiran_model
 import keras	
 import numpy as np
