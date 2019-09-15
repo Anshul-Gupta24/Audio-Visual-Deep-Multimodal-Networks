@@ -27,7 +27,7 @@ class WordNet():
         
 		hidden_size = 128
 		input_size = 80		# change depending on pretrained dnn
-		output_classes = 576
+		output_classes = 655
 
 		model = Sequential()
 		model.add(Masking(mask_value=0.0, input_shape=(None, input_size), name='masking_1'))		
@@ -37,6 +37,6 @@ class WordNet():
 		model.add(BatchNormalization(name='batch_normalization_2048', trainable=True))
 		model.add(Activation('relu'))
 		model.add(Dropout(0.5))
-		model.add(Dense(655, activation='softmax', name='denseY'))
+		model.add(Dense(output_classes, activation='softmax', name='denseY'))
 
 		return model
