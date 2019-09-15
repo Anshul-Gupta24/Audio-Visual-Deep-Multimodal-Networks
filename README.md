@@ -24,8 +24,8 @@ bash preprocessing.sh
 
 
 ### Training
-
-To train the audio subnetwork, run:</br>
+#### Pretraining
+To train the English audio subnetwork, run:</br>
 ```
 python train_audio_subnetwork.py
 ```
@@ -35,11 +35,25 @@ cd Preprocessing
 python get_speech_features_2048D.py
 python get_image_features_2048D.py
 ```
-To train the deep multimodal networks, run: </br>
+To train the English speech-image deep multimodal network, run: </br>
 ```
-python train_proxy.py
-python train_triplet.py
+python train_proxy.py 
 ```
+####Transfer Learning
+To train the Japanese audio subnetwork, run:</br>
+```
+python train_audio_subnetwork_jap.py
+```
+Extract the 2048 dimensional Japanese audio embeddings using:</br>
+```
+cd Preprocessing
+python get_speech_features_2048D_jap.py
+```
+To train the Japanese speech-image deep multimodal network, run: </br>
+```
+python train_proxy_jap.py 
+```
+
 
 ### Testing
 
