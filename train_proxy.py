@@ -27,7 +27,7 @@ if __name__ == '__main__':
     BATCH_SIZE = 128
     AUD_FEAT = 2048
     IMG_FEAT = 2048
-    NUM_CLASSES = 90
+    NUM_CLASSES = 655
 
 
     jointnet = JointNet(np.zeros((576, NUM_CLASSES)))
