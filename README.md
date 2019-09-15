@@ -35,7 +35,11 @@ cd Preprocessing
 python get_speech_features_2048D.py
 python get_image_features_2048D.py
 ```
-
+To train the deep multimodal networks, run: </br>
+```
+python train_proxy.py
+python train_triplet.py
+```
 
 ### Testing
 
