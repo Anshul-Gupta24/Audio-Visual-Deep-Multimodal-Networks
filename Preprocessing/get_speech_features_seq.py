@@ -22,13 +22,11 @@ seq_lens = {lst[x]:len(data[lst[x]]) for x in range(len(lst))}
 max_len = max(list(seq_lens.values()))			# Get max sequence length
 
 lst_ibm = np.array(list(data_ibm.keys()))
-labels_ibm = [l.split('_')[-2] for l in lst_ibm]
 seq_lens_ibm = {lst_ibm[x]:len(data_ibm[lst_ibm[x]]) for x in range(len(lst_ibm))}
 max_len_ibm = max(list(seq_lens_ibm.values()))			# Get max sequence length
 max_len = max(max_len, max_len_ibm)
 
 lst_ms = np.array(list(data_ms.keys()))
-labels_ms = [l.split('_')[-2] for l in lst_ms]
 seq_lens_ms = {lst_ms[x]:len(data_ms[lst_ms[x]]) for x in range(len(lst_ms))}
 max_len_ms = max(list(seq_lens_ms.values()))			# Get max sequence length
 max_len = max(max_len, max_len_ms)
