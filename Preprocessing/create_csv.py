@@ -10,6 +10,8 @@ with open(image_train_path, 'rb') as file:
     image_train_feats = pickle.load(file)
 with open(image_val_path, 'rb') as file:
     image_val_feats = pickle.load(file)
+labels = open('../classes.txt','r').read().split('\n')
+labels = labels[:-1]
 
 print('loaded...')
 
