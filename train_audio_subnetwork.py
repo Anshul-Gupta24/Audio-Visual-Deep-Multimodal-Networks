@@ -1,5 +1,5 @@
 '''
-Code to train the audio subnetwork
+Code to train the audio subnetwork for English speech
 '''
 
 from model_audio_subnetwork import WordNet
