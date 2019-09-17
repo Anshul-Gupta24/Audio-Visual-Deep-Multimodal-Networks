@@ -1,5 +1,5 @@
 '''
-Code to train the proxy based deep multimodal network
+Code to train the proxy based deep multimodal network for English speech-image input
 '''
 
 from model_proxy import JointNet
