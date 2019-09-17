@@ -8,6 +8,7 @@ Audio Data: Generate English (classes.txt) and Japanese (new_classes.txt) spoken
 Helper scripts are provided in the Preprocessing directory.</br>
 ```
 cd Preprocessing
+ --english-japanese.csv
  --google_tts.py 
  --ibm_tts.py 
  --microsoft_tts.py
