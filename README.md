@@ -4,7 +4,7 @@
 ### Data
 
 Image Data: Download the ImageNet data (http://www.image-net.org/). For the 79 classes not present in ImageNet, download images from Google and Flickr.  </br>
-Audio Data: Generate spoken data for all classes (classes.txt). In this paper we use the Google, IBM and Microsoft TTS systems to generate the audio data. </br></br>
+Audio Data: Generate English (classes.txt) and Japanese (new_classes.txt) spoken data. In this paper we use the Google, IBM and Microsoft TTS systems to generate the audio data. </br></br>
 Helper scripts are provided in the Preprocessing directory.</br>
 ```
 cd Preprocessing
