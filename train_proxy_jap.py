@@ -148,11 +148,17 @@ if __name__ == '__main__':
     callbacks_list = [checkpoint]
     
     
-    # Phase2: Train only on audio
     jointnet = JointNet(np.zeros((576, NUM_CLASSES)), False)
     model = jointnet.model
     model.load_weights('Saved_models/model_proxy/saved-model-24.hdf5', by_name=True)    # Choose epoch weights to load
-    history = model.fit_generator(generator_uni(df_train_aud, img_data_train, 1), steps_per_epoch=num_train_batches, epochs=100, callbacks=callbacks_list, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
+
+    # Phase2: Train only on audio
+    # Train in batches of 5
+    blocks = []
+    for b in blocks:
+        
+        # model.load_weights('Saved_models/model_proxy/saved-model-24.hdf5', by_name=True)    load weights for fresh start
+        history = model.fit_generator(generator_uni(df_train_aud, img_data_train, 1), steps_per_epoch=num_train_batches, epochs=100, callbacks=callbacks_list, validation_data=generator(df_val, img_data_val), initial_epoch=0, validation_steps=num_val_batches)
 
 
     print(history.history.keys())
