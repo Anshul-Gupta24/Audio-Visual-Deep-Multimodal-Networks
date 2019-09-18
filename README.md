@@ -63,7 +63,7 @@ python test.py
 ```
 To get the top K retrieval accuracy for the Japanese speech-image network, run:
 ```
-python test_jap.py
+python test_jap.py </br>
 ```
 
 
