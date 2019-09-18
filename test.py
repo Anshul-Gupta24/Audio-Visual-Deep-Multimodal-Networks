@@ -1,3 +1,6 @@
+'''
+Code to get image and audio retrieval accuracies
+'''
 import numpy as np
 np.random.seed(1337)
 import pickle
