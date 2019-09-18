@@ -57,6 +57,15 @@ python train_proxy_jap.py
 
 
 ### Testing
+To get the top K retrieval accuracy for the English speech-image network, run:
+```
+python test.py
+```
+To get the top K retrieval accuracy for the Japanese speech-image network, run:
+```
+python test_jap.py
+```
+
 
 ### References
 Praveen K.\*, Gupta A.\*, Ganapathy S., Soman A. (2019). 'Second Language Transfer Learning in Humans and Machines using Image Supervision'. Accepted at ASRU 2019.
