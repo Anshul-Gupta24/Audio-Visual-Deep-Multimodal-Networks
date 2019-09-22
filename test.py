@@ -149,7 +149,7 @@ if __name__=='__main__':
     with open('/home/data1/anshulg/speech_features_2048D.pkl', 'rb') as fp:
         speech_data = pickle.load(fp) 
 
-    filepath = 'Saved_models/saved-model-125.hdf5'      # choose model to load
+    filepath = 'Saved_models/model_proxy/saved-model-125.hdf5'      # choose model to load
     img_transform, aud_transform = get_model(filepath)
     get_confusion(speech_data, img_data_test, img_transform, aud_transform)
     print('Image retrieval accuracy:')
