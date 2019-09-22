@@ -15,6 +15,7 @@ os.environ['HDF5_USE_FILE_LOCKING']='FALSE'
 input_size = 80
 hidden_size = 128
 NUM_CLASSES = 655
+BLOCK_CLASSES = 5
 
 
 def get_model(filepath):
@@ -28,22 +29,25 @@ def get_model(filepath):
     return img_transform, aud_transform
 
     
-def get_confusion(speech_data, img_data_test, img_transform, aud_transform):
+def get_confusion(speech_data, img_data_test, img_transform, aud_transform, block_num):
 
-    classes = open('classes.txt').read().split('\n')
-    classes = classes[:-1]
+    all_classes = open('new_classes.txt').read().split('\n')
+    all_classes = all_classes[:-1]
+    start = block_num*5
+    end = start + 5
+    classes = all_classes[start:end]
 
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_ibm_test.pkl', 'rb') as fp:
+    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_ibm_test_jap.pkl', 'rb') as fp:
         spk_ibm_test = pickle.load(fp)
 
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_google_test.pkl', 'rb') as fp:
+    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_google_test_jap.pkl', 'rb') as fp:
         spk_google_test = pickle.load(fp)
 
-    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_microsoft_test.pkl', 'rb') as fp:
+    with open('/home/anshulg/WordNet/get_imagenet/functions/spk_microsoft_test_jap.pkl', 'rb') as fp:
         spk_ms_test = pickle.load(fp)
 
-    spk_ibm_test += 14
-    spk_ms_test += 14 + 3
+    spk_ibm_test += 1
+    spk_ms_test += 1 + 1
     spk_test = np.concatenate((spk_google_test, spk_ibm_test, spk_ms_test))
 
     aud_features = []
@@ -67,7 +71,7 @@ def get_confusion(speech_data, img_data_test, img_transform, aud_transform):
     print('audio anchor')
     for i in range(20):
         print(i)
-        cmat = np.zeros((NUM_CLASSES, NUM_CLASSES))
+        cmat = np.zeros((BLOCK_CLASSES, BLOCK_CLASSES))
         for x, ca in enumerate(classes):
             spk_ind = np.random.randint(num_speakers)
             v1 = aud_latent[x*num_speakers + spk_ind]
@@ -80,10 +84,10 @@ def get_confusion(speech_data, img_data_test, img_transform, aud_transform):
                 
                 cmat[x][y] = np.dot(v1, v2)
         
-        folder = 'Confusions/confusion_proxy_audio_anchor/'
+        folder = 'Confusions/confusion_proxy_audio_anchor_jap/block_'+str(block_num)+'/'
         if not os.path.isdir(folder):
             os.system('mkdir '+folder)
-        with open('Confusions/confusion_proxy_audio_anchor/confusion_mat_'+str(i)+'.pkl','wb') as fp:
+        with open(folder + 'confusion_mat_'+str(i)+'.pkl','wb') as fp:
             pickle.dump(cmat, fp)
 
     
@@ -92,7 +96,7 @@ def get_confusion(speech_data, img_data_test, img_transform, aud_transform):
     print('image anchor')
     for i in range(20):
         print(i)
-        cmat = np.zeros((NUM_CLASSES, NUM_CLASSES))
+        cmat = np.zeros((BLOCK_CLASSES, BLOCK_CLASSES))
         for x, ci in enumerate(classes):
             num_images = len(img_data_test[ci])
             img_ind = np.random.randint(num_images)
@@ -104,22 +108,22 @@ def get_confusion(speech_data, img_data_test, img_transform, aud_transform):
                 v2 = v2 / (np.linalg.norm(v2) + 1e-16)
                 cmat[x][y] = np.dot(v1, v2)
 
-        folder = 'Confusions/confusion_proxy_image_anchor/'
+        folder = 'Confusions/confusion_proxy_image_anchor_jap/block_'+str(block_num)+'/'
         if not os.path.isdir(folder):
             os.system('mkdir '+folder)
-        with open('Confusions/confusion_proxy_image_anchor/confusion_mat_'+str(i)+'.pkl','wb') as fp:
+        with open(folder + 'confusion_mat_'+str(i)+'.pkl','wb') as fp:
             pickle.dump(cmat, fp)
 
 
 def top_k(cmat, k):
     
     acc = 0
-    for x in range(NUM_CLASSES):
+    for x in range(BLOCK_CLASSES):
         topk_inds = np.argsort(cmat[x,:])[-k:]
         if x in topk_inds:
             acc += 1
 
-    acc = acc/NUM_CLASSES
+    acc = acc/BLOCK_CLASSES
     return acc
 
     
@@ -146,18 +150,18 @@ if __name__=='__main__':
     with open('Data/img_data_test.pkl', 'rb') as fp:
         img_data_test = pickle.load(fp)
 
-    with open('/home/data1/anshulg/speech_features_2048D.pkl', 'rb') as fp:
+    with open('/home/data1/anshulg/speech_features_2048D_jap.pkl', 'rb') as fp:
         speech_data = pickle.load(fp) 
 
-    filepath = 'Saved_models/saved-model-125.hdf5'      # choose model to load
+    filepath = 'Saved_models/model_proxy_jap/saved-model-25.hdf5'      # choose model to load
     img_transform, aud_transform = get_model(filepath)
     get_confusion(speech_data, img_data_test, img_transform, aud_transform)
     print('Image retrieval accuracy:')
-    top1, top5 = accuracy('Confusions/confusion_proxy_audio_anchor/')
+    top1, top5 = accuracy('Confusions/confusion_proxy_audio_anchor_jap/block_1/')    # choose block
     print('Top 1: ' + str(top1))
     print('Top 5: ' + str(top5))
     print('Audio retrieval accuracy:')
-    top1, top5 = accuracy('Confusions/confusion_proxy_image_anchor/')
+    top1, top5 = accuracy('Confusions/confusion_proxy_image_anchor_jap/block_1/')    # choose block
     print('Top 1: ' + str(top1))
     print('Top 5: ' + str(top5))
     
