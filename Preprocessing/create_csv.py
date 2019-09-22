@@ -6,10 +6,13 @@ import pandas as pd
 
 image_train_path = '../Data/img_data_train.pkl'
 image_val_path = '../Data/img_data_val.pkl'
+image_test_path = '../Data/img_data_test.pkl'
 with open(image_train_path, 'rb') as file:
     image_train_feats = pickle.load(file)
 with open(image_val_path, 'rb') as file:
     image_val_feats = pickle.load(file)
+with open(image_test_path, 'rb') as file:
+    image_test_feats = pickle.load(file)
 labels = open('../classes.txt','r').read().split('\n')
 labels = labels[:-1]
 
@@ -33,6 +36,15 @@ with open('../Data/spk_google_val.pkl', 'rb') as fp:
 with open('../Data/spk_microsoft_val.pkl', 'rb') as fp:
     spk_ms_val = pickle.load(fp)
 
+with open('../Data/spk_ibm_test.pkl', 'rb') as fp:
+    spk_ibm_test = pickle.load(fp)
+
+with open('../Data/spk_google_test.pkl', 'rb') as fp:
+    spk_google_test = pickle.load(fp)
+
+with open('../Data/spk_microsoft_test.pkl', 'rb') as fp:
+    spk_ms_test = pickle.load(fp)
+
 
 spk_ibm_train += 14
 spk_ms_train += 14 + 3
@@ -42,6 +54,10 @@ spk_ibm_val += 14
 spk_ms_val += 14 + 3
 spk_val = np.concatenate((spk_google_val, spk_ibm_val, spk_ms_val))
 spk_val = spk_val.astype(int)
+spk_ibm_test += 14
+spk_ms_test += 14 + 3
+spk_test = np.concatenate((spk_google_test, spk_ibm_test, spk_ms_test))
+spk_test = spk_test.astype(int)
 
 
 train_set = []
@@ -82,4 +98,24 @@ for label in labels:
 
 df_val = pd.DataFrame(val_set)
 print(df_val)
-df_val.to_csv('/../Data/val_data_proxy.csv')
+df_val.to_csv('../Data/val_data_proxy.csv')
+
+
+spk = spk_test
+test_set = []
+for label in labels:
+
+    # Image anchor
+    grounding = 0
+    for image_idx in range(len(img_data_test[label])):
+            test_set.append([grounding, label, image_idx])
+            
+    # Audio anchor
+    grounding = 1
+    for speech_idx in spk:    
+            test_set.append([grounding, label, speech_idx])
+
+
+df_test = pd.DataFrame(test_set)
+print(df_test)
+df_test.to_csv('../Data/test_data_proxy.csv')
