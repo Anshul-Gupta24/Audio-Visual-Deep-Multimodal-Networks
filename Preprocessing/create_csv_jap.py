@@ -88,7 +88,7 @@ for label in labels:
 
 df_val = pd.DataFrame(val_set)
 print(df_val)
-df_val.to_csv('/../Data/val_data_proxy_jap.csv')
+df_val.to_csv('../Data/val_data_proxy_jap.csv')
 
 
 spk = spk_test
@@ -108,4 +108,4 @@ for label in labels:
 
 df_test = pd.DataFrame(test_set)
 print(df_test)
-df_val.to_csv('/../Data/test_data_proxy_jap.csv')
+df_val.to_csv('../Data/test_data_proxy_jap.csv')
