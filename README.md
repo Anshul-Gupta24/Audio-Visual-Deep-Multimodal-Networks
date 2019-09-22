@@ -1,6 +1,6 @@
 # Audio-Visual-Deep-Multimodal-Networks
 #### Code for the paper 'Second Language Transfer Learning in Humans and Machines using Image Supervision' accepted at ASRU 2019.
-In this paper we train a proxy based deep multimodal neural network to learn spoken words from a new language, and compare its performance with humans. Our model is trained using image supervision. Training happens in two phases. In the first phase we jointly train our image subnetwork and proxy matrix. The proxies learned represent each image class and are fixed. In the second phase we train the audio subnetwork against these fixed proxies.
+In this paper we train a proxy based deep multimodal neural network to learn spoken words from a new language, and compare its performance with humans. Training happens in two phases. In the first phase we jointly train our image subnetwork and proxy matrix. The proxies learned represent each image class and are fixed. In the second phase we train the audio subnetwork against these fixed proxies.
 
 ### Data
 
