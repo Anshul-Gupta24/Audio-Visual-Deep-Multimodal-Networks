@@ -28,7 +28,7 @@ def get_model(filepath):
     return img_transform, aud_transform
 
     
-def get_confusion(speech_data, img_data_val, img_transform, aud_transform):
+def get_confusion(speech_data, img_data_test, img_transform, aud_transform):
 
     classes = open('classes.txt').read().split('\n')
     classes = classes[:-1]
@@ -53,12 +53,10 @@ def get_confusion(speech_data, img_data_val, img_transform, aud_transform):
 
     aud_latent = aud_transform.predict(np.array(aud_features))
    
-    start = 16
-    end = 32
     img_features = []
     for c in classes:
-        for s in range(start, end):
-            img_features.append(img_data_val[c][s])
+        for s in range(len(img_data_test[c])):
+            img_features.append(img_data_test[c][s])
 
     img_latent = img_transform.predict(np.array(img_features))
     
@@ -66,7 +64,6 @@ def get_confusion(speech_data, img_data_val, img_transform, aud_transform):
     # Get audio anchor confusions
 
     num_speakers = len(spk_test)
-    num_images = end - start
     print('audio anchor')
     for i in range(20):
         print(i)
@@ -76,6 +73,7 @@ def get_confusion(speech_data, img_data_val, img_transform, aud_transform):
             v1 = aud_latent[x*num_speakers + spk_ind]
             v1 = v1 / (np.linalg.norm(v1) + 1e-16)
             for y, ci in enumerate(classes):
+                num_images = len(img_data_test[ci])
                 img_ind = np.random.randint(num_images)
                 v2 = img_latent[y*num_images + img_ind]                
                 v2 = v2 / (np.linalg.norm(v2) + 1e-16)
@@ -96,6 +94,7 @@ def get_confusion(speech_data, img_data_val, img_transform, aud_transform):
         print(i)
         cmat = np.zeros((NUM_CLASSES, NUM_CLASSES))
         for x, ci in enumerate(classes):
+            num_images = len(img_data_test[ci])
             img_ind = np.random.randint(num_images)
             v1 = img_latent[x*num_images + img_ind]
             v1 = v1 / (np.linalg.norm(v1) + 1e-16)
@@ -144,15 +143,15 @@ def accuracy(folder):
 
 if __name__=='__main__':
 
-    with open('Data/img_data_val.pkl', 'rb') as fp:
-        img_data_val = pickle.load(fp)
+    with open('Data/img_data_test.pkl', 'rb') as fp:
+        img_data_test = pickle.load(fp)
 
     with open('/home/data1/anshulg/speech_features_2048D.pkl', 'rb') as fp:
         speech_data = pickle.load(fp) 
 
     filepath = 'Saved_models/saved-model-125.hdf5'      # choose model to load
     img_transform, aud_transform = get_model(filepath)
-    get_confusion(speech_data, img_data_val, img_transform, aud_transform)
+    get_confusion(speech_data, img_data_test, img_transform, aud_transform)
     print('Image retrieval accuracy:')
     top1, top5 = accuracy('Confusions/confusion_proxy_audio_anchor/')
     print('Top 1: ' + str(top1))
