@@ -1,5 +1,5 @@
 '''
-Code to get image and audio retrieval accuracies
+Code to get image and English audio retrieval accuracies
 '''
 import numpy as np
 np.random.seed(1337)
