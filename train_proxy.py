@@ -25,13 +25,14 @@ if __name__ == '__main__':
 
     start = timeit.default_timer()
     BATCH_SIZE = 128
-    AUD_FEAT = 2048
+    AUD_FEAT = 80
     IMG_FEAT = 2048
     NUM_CLASSES = 655
 
 
-    with open('Data/speech_features_2048D.pkl', 'rb') as fp:
+    with open('Data/speech_features_seq.pkl', 'rb') as fp:
         speech_data = pickle.load(fp)
+    MAX_LEN = speech_data[speech_data.keys()[0]].shape[1]
 
     with open('Data/image_features_train.pkl', 'rb') as fp:
         img_data_train = pickle.load(fp)
@@ -81,7 +82,7 @@ if __name__ == '__main__':
                 # image anchor
                 if x==0:                    
                     anchor_img.append(img_data[label][anchor_indices[s]])
-                    anchor_aud.append(np.zeros(AUD_FEAT))
+                    anchor_aud.append(np.zeros((MAX_LEN, AUD_FEAT)))
                    
                     
                 # audio anchor
@@ -123,7 +124,7 @@ if __name__ == '__main__':
                 # image anchor
                 if x==0:                    
                     anchor_img.append(img_data[label][anchor_indices[s]])
-                    anchor_aud.append(np.zeros(AUD_FEAT))
+                    anchor_aud.append(np.zeros((MAX_LEN, AUD_FEAT)))
                    
                     
                 # audio anchor
