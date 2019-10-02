@@ -36,15 +36,6 @@ with open('../Data/spk_google_val_jap.pkl', 'rb') as fp:
 with open('../Data/spk_microsoft_val_jap.pkl', 'rb') as fp:
     spk_ms_val = pickle.load(fp)
     
-with open('../Data/spk_ibm_test_jap.pkl', 'rb') as fp:
-    spk_ibm_test = pickle.load(fp)
-
-with open('../Data/spk_google_test_jap.pkl', 'rb') as fp:
-    spk_google_test = pickle.load(fp)
-
-with open('../Data/spk_microsoft_test_jap.pkl', 'rb') as fp:
-    spk_ms_test = pickle.load(fp)
-
 
 spk_ibm_train += 1
 spk_ms_train += 1 + 
@@ -54,10 +45,6 @@ spk_ibm_val += 1
 spk_ms_val += 1 + 1
 spk_val = np.concatenate((spk_google_val, spk_ibm_val, spk_ms_val))
 spk_val = spk_val.astype(int)
-spk_ibm_test += 1
-spk_ms_test += 1 + 1
-spk_test = np.concatenate((spk_google_test, spk_ibm_test, spk_ms_test))
-spk_test = spk_test.astype(int)
 
 
 spk = spk_train
@@ -82,30 +69,12 @@ for label in labels:
             
     # Audio anchor
     grounding = 1
-    for speech_idx in spk:    
-            val_set.append([grounding, label, speech_idx])
+    for speech_idx in spk:
+            # Repeat 5 times to make number divisible by batch size
+            for i in range(5):
+                val_set.append([grounding, label, speech_idx])
 
 
 df_val = pd.DataFrame(val_set)
 print(df_val)
 df_val.to_csv('../Data/val_data_proxy_jap.csv')
-
-
-spk = spk_test
-test_set = []
-for label in labels:
-
-    # Image anchor
-    grounding = 0
-    for image_idx in range(len(img_data_test[label])):
-            test_set.append([grounding, label, image_idx])
-            
-    # Audio anchor
-    grounding = 1
-    for speech_idx in spk:    
-            test_set.append([grounding, label, speech_idx])
-
-
-df_test = pd.DataFrame(test_set)
-print(df_test)
-df_val.to_csv('../Data/test_data_proxy_jap.csv')
