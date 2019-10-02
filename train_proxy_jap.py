@@ -1,7 +1,7 @@
 '''
 Code to train the proxy based deep multimodal network for Japanese speech-image input
 '''
-from model_proxy import JointNet
+from model_proxy_jap import JointNet
 import keras	
 import numpy as np
 from keras.utils import plot_model
