@@ -121,6 +121,9 @@ if __name__ == '__main__':
 
     i = 0
     j = 0
+    folder = "Saved_models/model_proxy_jap"
+        if not os.path.isdir(folder):
+            os.system('mkdir '+folder)
     for x in range(18):
 
         model.load_weights('Saved_models/model_proxy/saved-model-24.hdf5', by_name=True)    # For fresh start
