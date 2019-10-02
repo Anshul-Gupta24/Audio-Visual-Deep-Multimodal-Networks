@@ -74,9 +74,22 @@ class JointNet():
 
         input_size = 80
         hidden_size = 128
+        
+        model = Sequential()
+        # audio submodel
+        model.add(Masking(mask_value=0.0, input_shape=(None, input_size), name='masking_1'))		
+        model.add(LSTM(hidden_size, return_sequences=True, input_shape=(None, input_size), name='lstm_1', trainable=True))
+        model.add(LSTM(hidden_size, return_sequences=False, input_shape=(None, hidden_size), name='lstm_2', trainable=True))
+        model.add(Dense(2048, name='dense_2048', trainable=True))
+        model.add(BatchNormalization(name='batch_normalization_2048', trainable=True))
+        model.add(Activation('relu'))
+        model.add(Dropout(0.5))
 
-        inp = Input((2048, ))
-        op1 = Dropout(0.5)(inp)
+        model.load_weights('Saved_models/model_audio_subnetwork.h5', by_name=True)
+        
+
+        inp = Input((None, 80))
+        op1 = model(inp)
         op2 = Dense(576, activation='tanh', input_shape=(2048, ), name='dense_aud1', trainable=True)(op1)
 
         model = Model(inputs=inp, outputs=op2, name='sequential_1')
@@ -97,11 +110,11 @@ class JointNet():
 
     def joint_model(self):
 
-        NUM_CLASSES = 90
+        NUM_CLASSES = 655
 
         grounding = Input((1, ), name='grounding')
         grounding_bar = Input((1, ), name='grounding_bar')
-        anchor_aud = Input((2048, ), name='anchor_aud')
+        anchor_aud = Input((None, 80), name='anchor_aud')
         anchor_img = Input((2048, ), name='anchor_img')
         class_mask = Input((NUM_CLASSES, ), name='class_mask')
         class_mask_bar = Input((NUM_CLASSES, ), name='class_mask_bar')
