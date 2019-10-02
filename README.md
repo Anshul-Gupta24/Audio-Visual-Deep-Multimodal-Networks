@@ -31,10 +31,9 @@ To train the English audio subnetwork, run:</br>
 ```
 python train_audio_subnetwork.py
 ```
-Extract the 2048 dimensional audio and image embeddings using:</br>
+Extract the 2048 dimensional audio image embeddings using:</br>
 ```
 cd Preprocessing
-python get_speech_features_2048D.py
 python get_image_features_2048D.py
 ```
 To train the English speech-image deep multimodal network, run: </br>
