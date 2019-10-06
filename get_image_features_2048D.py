@@ -2,7 +2,7 @@ import numpy as np
 import pickle
 from functions.data import im_load
 from keras.applications.xception import preprocess_input
-from functions.model import get_image_model_xception
+from Preprocessing.functions.model import get_image_model_xception
 import os
 
 def is_folder(name):
@@ -10,17 +10,10 @@ def is_folder(name):
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
-# base_path = '/home/data1/kiranp/Flickr_selected'
-base_path = '/home/data1/kiranp/Google_images_selected'
-# base_path = 'Flickr_selected'
+base_path = 'Data/Flickr'
 folders = sorted([item for item in os.listdir(base_path) if is_folder(item)])
 
 image_feats = {}
-
-# with open(base_path + '/feats.pkl', 'rb') as file:
-#     image_feats = pickle.load(file)
-# folders = ['thorns']
-
 for class_name in folders:
     print('Starting {0:s}...({1:d})'.format(class_name, len(os.listdir('{0:s}/{1:s}'.format(base_path, class_name)))))
     filepaths = np.array(['{0:s}/{1:s}/{2:s}'.format(base_path, class_name, item) for item in os.listdir('{0:s}/{1:s}'.format(base_path, class_name))])
@@ -40,5 +33,5 @@ for class_name in folders:
     print(image_feat.shape)
     image_feats[class_name] = image_feat
 
-with open('{0:s}/feats.pkl'.format(base_path), 'wb') as file:
+with open('Data/image_features_flickr.pkl'.format(base_path), 'wb') as file:
     pickle.dump(image_feats, file)
