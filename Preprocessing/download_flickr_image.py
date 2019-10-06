@@ -1,4 +1,4 @@
-# First, you should install flickrapi
+# First install flickrapi
 # pip install flickrapi
 import flickrapi
 import wget
