@@ -1,3 +1,10 @@
+'''
+Code to extract 2048D Xception features for images. Use this to create three dictionaries saved as pickle files: 
+Data/image_features_train.pkl
+Data/image_features_val.pkl
+Data/image_features_test.pkl
+'''
+
 import numpy as np
 import pickle
 from functions.data import im_load
