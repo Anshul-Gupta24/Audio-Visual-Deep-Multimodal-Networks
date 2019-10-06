@@ -13,6 +13,9 @@ cd Preprocessing
  --google_tts.py 
  --ibm_tts.py 
  --microsoft_tts.py
+ 
+ --download_flickr_image.py
+ --download_google_image.py
  ```
 
 ### Pre-processing
