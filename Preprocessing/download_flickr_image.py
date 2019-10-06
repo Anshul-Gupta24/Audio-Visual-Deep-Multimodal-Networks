@@ -6,20 +6,16 @@ import os
 import pandas as pd
 from functions.data import get_label_to_remap
 
-out_path = '/home/data1/kiranp/Flickr'
+out_path = '../Data/Flickr'
 
 done = ['']
-# keywords, _ = [item for item in get_uncommon() if item not in done]
-
-# labels = pd.read_csv('data/experiment_labels.csv')
-# keywords = sorted(labels.values[:, 0])
 l2r = get_label_to_remap()
 
 keywords = sorted(['mat'])
 
 for keyword in keywords:
     # Flickr api access key
-    flickr=flickrapi.FlickrAPI('c6a2c45591d4973ff525042472446ca2', '202ffe6f387ce29b', cache=True)
+    flickr=flickrapi.FlickrAPI('<your_key>', '<your_key>', cache=True)
     remap = l2r[keyword]
     photos = flickr.walk(text=remap, tag_mode='all', tags=[remap], extras='url_c', per_page=100, sort='relevance')
     urls = []
