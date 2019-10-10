@@ -21,7 +21,7 @@ cd Preprocessing
 ### Pre-processing
 
 For the audio files, we extract 80 dimensional features using the LRE baseline. For the image files, we extract 2048 dimensional features using the Xception network. The features extracted are stored in the form of a dictionary and split into train, validation and test sets. The data along with their corresponding csv files are stored in the Data directory.</br></br>
-Download the LRE baseline weights from [here](https://drive.google.com/open?id=1RTlIayP658dPTRQhCDklK8lwuo81Utap) and store in the Preprocessing/LRE_baseline/models directory. To extract the features use the following helper scripts.</br>
+Download the LRE baseline weights from [here](https://drive.google.com/open?id=1RTlIayP658dPTRQhCDklK8lwuo81Utap) and store in the Preprocessing/LRE_baseline/models directory. To extract the features use the provided helper scripts.</br>
 ```
 cd Preprocessing
 --prepare_images.py
