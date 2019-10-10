@@ -20,7 +20,7 @@ cd Preprocessing
 
 ### Pre-processing
 
-We extract 80 dimensional features using the LRE baseline. The features extracted are stored in the form of a dictionary and split into train, validation and test sets. The data along with their corresponding csv files are stored in the Data directory.</br></br>
+We extract 80 dimensional speech features using the LRE baseline. The features extracted are stored in the form of a dictionary and split into train, validation and test sets. The data along with their corresponding csv files are stored in the Data directory.</br></br>
 Download the LRE baseline weights from [here](https://drive.google.com/open?id=1RTlIayP658dPTRQhCDklK8lwuo81Utap) and store in the Preprocessing/LRE_baseline/models directory. To preprocess the data, run:</br>
 ```
 cd Preprocessing
@@ -33,11 +33,6 @@ bash preprocessing.sh
 To train the English audio subnetwork, run:</br>
 ```
 python train_audio_subnetwork.py
-```
-Extract the 2048 dimensional audio image embeddings using:</br>
-```
-cd Preprocessing
-python get_image_features_2048D.py
 ```
 To train the English speech-image deep multimodal network, run: </br>
 ```
