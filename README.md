@@ -28,7 +28,7 @@ cd Preprocessing
 cd Preprocessing/LRE_baseline
 --get_features.py
 ```
-Generate the following pickle files:</br>
+And generate the following pickle files:</br>
 ```
 cd Data
 --google_synth_features.pkl
