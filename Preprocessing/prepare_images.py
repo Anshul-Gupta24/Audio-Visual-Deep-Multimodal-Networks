@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 from functions.data import im_load
 from keras.applications.xception import preprocess_input
-from Preprocessing.functions.model import get_image_model_xception
+from functions.model import get_image_model_xception
 import os
 
 def is_folder(name):
@@ -17,7 +17,7 @@ def is_folder(name):
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
-base_path = 'Data/Flickr'
+base_path = '../Data/Flickr'
 folders = sorted([item for item in os.listdir(base_path) if is_folder(item)])
 
 image_feats = {}
@@ -40,5 +40,5 @@ for class_name in folders:
     print(image_feat.shape)
     image_feats[class_name] = image_feat
 
-with open('Data/image_features_flickr.pkl'.format(base_path), 'wb') as file:
+with open('../Data/image_features_flickr.pkl'.format(base_path), 'wb') as file:
     pickle.dump(image_feats, file)
