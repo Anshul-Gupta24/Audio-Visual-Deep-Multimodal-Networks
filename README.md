@@ -21,12 +21,33 @@ cd Preprocessing
 ### Pre-processing
 
 For the audio files, we extract 80 dimensional features using the LRE baseline. For the image files, we extract 2048 dimensional features using the Xception network. The features extracted are stored in the form of a dictionary and split into train, validation and test sets. The data along with their corresponding csv files are stored in the Data directory.</br></br>
-Download the LRE baseline weights from [here](https://drive.google.com/open?id=1RTlIayP658dPTRQhCDklK8lwuo81Utap) and store in the Preprocessing/LRE_baseline/models directory. To preprocess the data, run:</br>
+Download the LRE baseline weights from [here](https://drive.google.com/open?id=1RTlIayP658dPTRQhCDklK8lwuo81Utap) and store in the Preprocessing/LRE_baseline/models directory. To preprocess the data use the following helper scripts.</br>
+```
+cd Preprocessing
+--prepare_images.py
+cd Preprocessing/LRE_baseline
+--get_features.py
+```
+Generate the following pickle files:</br>
+```
+cd Data
+--google_synth_features.pkl
+--ibm_synth_features.pkl
+--microsoft_synth_features.pkl
+--google_synth_features_jap.pkl
+--ibm_synth_features_jap.pkl
+--microsoft_synth_features_jap.pkl
+
+--image_features_imagenet_train.pkl
+--image_features_imagenet_val.pkl
+--image_features_google.pkl
+--image_features_flickr.pkl
+```
+Then run:</br>
 ```
 cd Preprocessing
 bash preprocessing.sh
 ```
-
 
 ### Training
 #### Pretraining
