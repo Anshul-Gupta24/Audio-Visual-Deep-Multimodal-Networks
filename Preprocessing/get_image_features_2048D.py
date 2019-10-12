@@ -31,7 +31,7 @@ for c in classes:
   
 for c in new_classes:
   img_features_train[c] = image_features_google[c][:30]
-  img_features_train[c] = np.concatenate(img_features_train[c], image_features_flickr[c][:30])
+  img_features_train[c] = np.concatenate([img_features_train[c], image_features_flickr[c][:30]])
   
   
 # create val pkl file
@@ -41,7 +41,7 @@ for c in classes:
   
 for c in new_classes:
   img_features_val[c] = image_features_google[c][30:40]
-  img_features_val[c] = np.concatenate(img_features_val[c], image_features_flickr[c][30:40])
+  img_features_val[c] = np.concatenate([img_features_val[c], image_features_flickr[c][30:40]])
   
   
 # create test pkl file
@@ -51,7 +51,7 @@ for c in classes:
   
 for c in new_classes:
   img_features_test[c] = image_features_google[c][40:50]
-  img_features_test[c] = np.concatenate(img_features_test[c], image_features_flickr[c][40:50])
+  img_features_test[c] = np.concatenate([img_features_test[c], image_features_flickr[c][40:50]])
 
 
 with open('../Data/image_features_train.pkl', 'wb') as fp:
